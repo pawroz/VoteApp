@@ -2,6 +2,9 @@ from django.contrib import admin
 
 from .models import *
 
+admin.site.site_header = 'Aviva Poznań Północ'
+admin.site.site_title = 'Admin'
+admin.site.index_title = 'Aviva Poznań Północ'
 
 class ChoiceInLine(admin.TabularInline):
 	model = Choice
