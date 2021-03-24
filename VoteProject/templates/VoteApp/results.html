@@ -29,6 +29,11 @@
 
 <script>
 
+	var state = {
+		'items':[],
+		'values':[],
+	}
+
 	var objId = '{{specific_question.id}}'
 
 	var dataURL = `/VoteApp/resultsData/${objId}`
@@ -37,32 +42,39 @@
 		url:dataURL,
 		success:function(response){
 			console.log('RESPONSE:', response)
+			for (var i in response){
+
+				var key = Object.keys(response[i])[0]
+				var value = Object.values(response[i])[0]
+
+				state.items.push(key)
+				state.values.push(value)
+			}
+			console.log("STATE: ", state)
+			buildChart()
 		}
 	})
 
-	var chartData = {
-		"type":"bar",
-		"scale-x":{
-			"values":[
-			"Pablo",
-			"Erick",
-			"tim"]
-		},
-		"series":[
-		{
-			"values":[
-				15,
-				25,
-				40,
+	function buildChart(){
+			var chartData = {
+			"type":"bar",
+			"scale-x":{
+				"values":state.items
+			},
+			"series":[
+				{
+					"values":state.values
+				}
 			]
 		}
-		]
-	}
 
-	zingchart.render({
-		id: "myChart",
-		data: chartData
-	});
+
+		zingchart.render({
+		  id: "myChart",
+		  data: chartData,
+		});
+	}
+	
 
 
 </script>
