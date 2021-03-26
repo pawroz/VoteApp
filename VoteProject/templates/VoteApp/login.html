@@ -1,6 +1,7 @@
+{% extends 'base.html' %}
 <h3>login</h3>
 
-
+{% block content %}
 <form action="" method="POST">
 {% csrf_token %}
     <input name="username">
@@ -10,4 +11,4 @@
 {% for message in messages %}
     {{message}}
 {% endfor %}
-    
+{% endblock %}

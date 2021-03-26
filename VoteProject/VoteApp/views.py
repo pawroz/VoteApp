@@ -43,9 +43,16 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('VoteApp:home')
-
+        else:
+            messages.info(request, 'username or password is incorrect')
     context = {}
     return render(request, 'VoteApp/login.html', context)
+
+
+def logoutUser(request):
+
+    logout(request)
+    return redirect('VoteApp:loginPage')
 
 
 def index(request):
