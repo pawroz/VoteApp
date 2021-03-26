@@ -3,7 +3,28 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.http import JsonResponse
+
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import *
+from .forms import *
+
+
+def home(request):
+
+    context = {}
+    return render(request, 'VoteApp/home.html', context)
+
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form': form, }
+    return render(request, 'VoteApp/register.html', context)
 
 
 def index(request):

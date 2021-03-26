@@ -5,10 +5,16 @@ from . import views
 app_name = 'VoteApp'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.home, name='home'),
+    path('charts', views.index, name='index'),
+
+    path('registerPage', views.registerPage, name='registerPage'),
+
     path('detail/<str:pk>', views.detail, name='detail'),
     path('results/<str:pk>', views.results, name='results'),
-    path('vote/<str:pk>', views.vote, name='vote'),
     path('resultsData/<str:pk>', views.resultsData, name='resultsData'),
+
+    path('vote/<str:pk>', views.vote, name='vote'),
+
 
 ]
