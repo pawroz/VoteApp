@@ -9,6 +9,7 @@ urlpatterns = [
     path('charts', views.index, name='index'),
 
     path('registerPage', views.registerPage, name='registerPage'),
+    path('loginPage', views.loginPage, name='loginPage'),
 
     path('detail/<str:pk>', views.detail, name='detail'),
     path('results/<str:pk>', views.results, name='results'),

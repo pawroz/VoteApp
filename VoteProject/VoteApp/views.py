@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.http import JsonResponse
 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 from .models import *
 from .forms import *
@@ -23,8 +25,27 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('VoteApp:loginPage')
+
     context = {'form': form, }
     return render(request, 'VoteApp/register.html', context)
+
+
+def loginPage(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('VoteApp:home')
+
+    context = {}
+    return render(request, 'VoteApp/login.html', context)
 
 
 def index(request):
