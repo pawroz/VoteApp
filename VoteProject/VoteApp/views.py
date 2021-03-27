@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
@@ -19,15 +20,19 @@ def home(request):
 
 
 def registerPage(request):
-    form = CreateUserForm()
+    if request.user.is_authenticated:
+        return redirect('VoteApp:home')
+    else:
+        form = CreateUserForm()
 
-    if request.method == "POST":
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + username)
-            return redirect('VoteApp:loginPage')
+        if request.method == "POST":
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                messages.success(
+                    request, 'Account was created for ' + username)
+                return redirect('VoteApp:loginPage')
 
     context = {'form': form, }
     return render(request, 'VoteApp/register.html', context)
@@ -55,6 +60,7 @@ def logoutUser(request):
     return redirect('VoteApp:loginPage')
 
 
+@login_required(login_url='VoteApp:loginPage')
 def index(request):
     latest_questions = Question.objects.order_by('-pub_date')[:5]
 
