@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
 <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -6,74 +7,77 @@
 <h1 class="mb-5 text-center">{{ specific_question.question }}</h1>
 
 <ul class="list-group mb-5">
-  {% for choice in specific_question.choice_set.all %} {% if choice.votes == 1
-  %}
-  <li class="list-group-item">
-    {{ choice.choice }}
-    <span class="badge badge-success float-right">{{ choice.votes }} vote</span>
-  </li>
-  {% else %}
-  <li class="list-group-item">
-    {{ choice.choice }}
-    <span class="badge badge-success float-right"
-      >{{ choice.votes }} votes</span
-    >
-  </li>
-  {% endif %} {% endfor %}
+	{% for choice in specific_question.choice_set.all %}
+		{% if choice.votes == 1 %}
+			<li class="list-group-item">
+		{{ choice.choice }}  <span class="badge badge-success float-right">{{ choice.votes }} vote</span>
+			</li>
+		{% else %}
+			<li class="list-group-item">
+				{{ choice.choice }}  <span class="badge badge-success float-right">{{ choice.votes }} votes</span>
+			</li>
+		{% endif %}
+	{% endfor %}
 </ul>
 
-<div id="myChart"></div>
+<div id=myChart>
+	
+</div>
 
-<a class="btn btn-secondary" href="{% url 'index' %}">Back To Polls</a>
-<a class="btn btn-dark" href="{% url 'detail' specific_question.id %}"
-  >Vote again?</a
->
+<a class="btn btn-secondary" href="{% url 'VoteApp:index' %}">Back To Polls</a>
+<a class="btn btn-dark" href="{% url 'VoteApp:detail' specific_question.id %}">Vote again?</a>
 
 <script>
-  var state = {
-    items: [],
-    values: [],
-  };
 
-  var objId = "{{specific_question.id}}";
+	var state = {
+		'items':[],
+		'values':[],
+	}
 
-  var dataURL = `/resultsData/${objId}`;
-  $.ajax({
-    method: "GET",
-    url: dataURL,
-    success: function (response) {
-      console.log("RESPONSE:", response);
+	var objId = '{{specific_question.id}}'
 
-      for (var i in response) {
-        var key = Object.keys(response[i])[0];
-        var value = Object.values(response[i])[0];
+	var dataURL = `/resultsData/${objId}`
+	$.ajax({
+		method:'GET',
+		url:dataURL,
+		success:function(response){
+			console.log('RESPONSE:', response)
 
-        state.items.push(key);
-        state.values.push(value);
-      }
-      console.log("STATE: ", state);
-      buildChart();
-    },
-  });
+			for (var i in response){
 
-  function buildChart() {
-    var chartData = {
-      type: "bar",
-      "scale-x": {
-        values: state.items,
-      },
-      series: [
-        {
-          values: state.values,
-        },
-      ],
-    };
+				var key = Object.keys(response[i])[0]
+				var value = Object.values(response[i])[0]
 
-    zingchart.render({
-      id: "myChart",
-      data: chartData,
-    });
-  }
+				state.items.push(key)
+				state.values.push(value)
+			}
+			console.log("STATE: ", state)
+			buildChart()
+		}
+	})
+
+	function buildChart(){
+			var chartData = {
+			"type":"bar",
+			"scale-x":{
+				"values":state.items
+			},
+			"series":[
+				{
+					"values":state.values
+				}
+			]
+		}
+
+
+		zingchart.render({
+		  id: "myChart",
+		  data: chartData,
+		});
+	}
+	
+
+
 </script>
 
 {% endblock %}
