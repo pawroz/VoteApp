@@ -21,7 +21,7 @@ def home(request):
 
 def registerPage(request):
     if request.user.is_authenticated:
-        return redirect('VoteApp:home')
+        return redirect('home')
     else:
         form = CreateUserForm()
 
@@ -32,7 +32,7 @@ def registerPage(request):
                 username = form.cleaned_data.get('username')
                 messages.success(
                     request, 'Account was created for ' + username)
-                return redirect('VoteApp:loginPage')
+                return redirect('loginPage')
 
     context = {'form': form, }
     return render(request, 'VoteApp/register.html', context)
@@ -47,7 +47,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('VoteApp:home')
+            return redirect('home')
         else:
             messages.info(request, 'username or password is incorrect')
     context = {}
@@ -57,10 +57,10 @@ def loginPage(request):
 def logoutUser(request):
 
     logout(request)
-    return redirect('VoteApp:loginPage')
+    return redirect('loginPage')
 
 
-@login_required(login_url='VoteApp:loginPage')
+@login_required(login_url='loginPage')
 def index(request):
     latest_questions = Question.objects.order_by('-pub_date')[:5]
 
@@ -110,7 +110,7 @@ def vote(request, pk):
     selected_choice.votes += 1
     selected_choice.save()
 
-    return HttpResponseRedirect(reverse('VoteApp:results', args=(specific_question.id,)))
+    return HttpResponseRedirect(reverse('results', args=(specific_question.id,)))
 
 
 def resultsData(request, pk):
