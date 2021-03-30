@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 
+from django.forms import inlineformset_factory
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -31,6 +32,7 @@ def registerPage(request):
             form = CreateUserForm(request.POST)
             if form.is_valid():
                 user = form.save()
+                print(user, user.username)
                 username = form.cleaned_data.get('username')
                 UserProfile.objects.create(
                     user=user,
@@ -130,3 +132,14 @@ def resultsData(request, pk):
 
     print(voteData)
     return JsonResponse(voteData, safe=False)
+
+def addPolling(request):
+    ChoiceFormSet = inlineformset_factory(Question, Choice, fields=('choice','question'), extra=3, can_delete = False)
+    formset = ChoiceFormSet()
+    form = ChoiceForm()
+    if request.method == 'POST':
+        print(request.POST)
+        
+
+    context = {'formset':formset, 'form':form}
+    return render(request, 'VoteApp/addPolling.html', context)

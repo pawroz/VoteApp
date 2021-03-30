@@ -12,12 +12,13 @@ urlpatterns = [
 
     path('register', views.registerPage, name='registerPage'),
     path('login', views.loginPage, name='loginPage'),
-    path('logout', views.logoutUser, name='logout'),
+    path('logout/', views.logoutUser, name='logout'),
 
     path('detail/<str:pk>', views.detail, name='detail'),
     path('results/<str:pk>', views.results, name='results'),
     path('resultsData/<str:pk>', views.resultsData, name='resultsData'),
 
+    path('addPolling', views.addPolling, name='addPolling'),
     path('vote/<str:pk>', views.vote, name='vote'),
 
     path('reset_password/',
