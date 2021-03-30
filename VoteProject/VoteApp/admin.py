@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.contrib.auth.models import User
 from .models import *
 
 admin.site.site_header = 'Aviva Poznań Północ'
@@ -25,4 +25,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(TeamMate)
+admin.site.register(UserProfile)

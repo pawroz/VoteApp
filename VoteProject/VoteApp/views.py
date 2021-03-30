@@ -1,13 +1,16 @@
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
 from django.http import JsonResponse
 
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
+
+
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 from .models import *
 from .forms import *
@@ -24,12 +27,15 @@ def registerPage(request):
         return redirect('home')
     else:
         form = CreateUserForm()
-
         if request.method == "POST":
             form = CreateUserForm(request.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
                 username = form.cleaned_data.get('username')
+                UserProfile.objects.create(
+                    user=user,
+                    name=user.username
+                )
                 messages.success(
                     request, 'Account was created for ' + username)
                 return redirect('loginPage')
