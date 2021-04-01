@@ -15,7 +15,7 @@ class ChoiceForm(ModelForm):
     class Meta:
         model = Choice
         fields = ('question',)
-        widgets = {'question': forms.TextInput}
+        #widgets = {'question': forms.TextInput}
 
 # class QuestionForm(ModelForm):
 #     class Meta:

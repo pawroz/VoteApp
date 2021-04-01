@@ -134,12 +134,20 @@ def resultsData(request, pk):
     return JsonResponse(voteData, safe=False)
 
 def addPolling(request):
-    ChoiceFormSet = inlineformset_factory(Question, Choice, fields=('choice','question'), extra=3, can_delete = False)
+    ChoiceFormSet = inlineformset_factory(Question, Choice, fields=('choice',), extra=3, can_delete = False)
     formset = ChoiceFormSet()
     form = ChoiceForm()
     if request.method == 'POST':
-        print(request.POST)
-        
+        question = request.POST.get('question')
+        form.fields['question'].choices = [(question, question)]
+        form = ChoiceForm(request.POST)
+        formset = ChoiceFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            print(request.POST)
+            # form.save() 
+            # formset.save()
+            # return redirect('/')
+    
 
     context = {'formset':formset, 'form':form}
     return render(request, 'VoteApp/addPolling.html', context)
