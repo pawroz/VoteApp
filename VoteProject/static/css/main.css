@@ -1,0 +1,78 @@
+html,
+body,
+#intro {
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+#intro {
+  background: url("https://data.1freewallpapers.com/download/long-pier.jpg")
+    no-repeat center center fixed;
+  background-position: center bottom;
+}
+
+.img-fluid {
+  max-width: 40% !important;
+  height: auto;
+}
+/* ######################## */
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: bold;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+form {
+  margin: 0 auto;
+  width: 300px;
+}
+
+form h1 {
+  text-align: center;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+input {
+  margin-bottom: 3px !important;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+form button {
+  padding: 10px;
+}
+label {
+  cursor: pointer;
+}
+
+#form-switch {
+  display: none;
+}
+#register-form {
+  display: none;
+}
+#form-switch:checked ~ #register-form {
+  display: block;
+}
+#form-switch:checked ~ #login-form {
+  display: none;
+}
+
+#messages {
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+

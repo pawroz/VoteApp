@@ -1,0 +1,47 @@
+{% load static %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}"> -->
+<link rel="stylesheet" href="https://maxc
+dn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<header>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <a class='navbar-brand' href="/">
+      <img class='d-inline-block mr-1 align-middle' src="{% static 'images/logo-aviva.png' %}" width="70" height="30"
+        alt="">
+    </a>
+    <button class='navbar-toggler' type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu"
+      aria-expanded="false" aria-label="Przełącznik nawigacji">
+      <span class='navbar-toggler-icon'>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainmenu">
+      <ul class='navbar-nav ml-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' href="{% url 'home'%}">STRONA GŁÓWNA</a>
+        </li>
+
+        <li class='nav-item'>
+          <a class='nav-link' href="{% url 'index'%}">ZOBACZ ANKIETY</a>
+        </li>
+        {% if not user.is_authenticated %}
+        <li class='nav-item'>
+          <a class='nav-link' href="{% url 'loginPage' %}">ZALOGUJ SIĘ</a>
+        </li>
+        {% else %}
+        <li class='nav-item'>
+          <!-- <span>Hello, {{request.user}}</span> -->
+          <a class='nav-link' href="{% url 'logout' %}">WYLOGUJ SIĘ</a>
+        </li>
+        {% endif %}
+        {% block content-detail %}
+        {% endblock content-detail%}
+
+
+
+      </ul>
+    </div>
+  </nav>
+</header>

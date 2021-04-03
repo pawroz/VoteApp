@@ -1,0 +1,18 @@
+{% extends 'VoteApp/base.html' %}
+{% block content %}
+<h1 class="text-center mb-3 text-white">ANKIETY</h1>
+{% if latest_questions %}
+{% for question in latest_questions %}
+<div class="card mb-3  bg-transparent">
+  <div class="card-body border border-white ">
+    <p class="lead text-white font-weight-bold ">{{ question.question }}</p>
+    <a href="{% url 'detail' question.id %}" class="btn btn-primary btn-sm">Zagłosuj</a>
+    <a href="{% url 'results' question.id %}" class="btn btn-secondary btn-sm">Wyniki</a>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<p>BRAK DOSTĘPNYCH ANKIET</p>
+{% endif %}
+
+{% endblock content %}

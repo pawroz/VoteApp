@@ -1,0 +1,23 @@
+{% extends 'Voteapp/base.html' %}
+
+{% block contentLogin %}
+<div class="col-md-6 m-auto pt-3">
+    <div class="d-flex justify-content-center text-center">
+        <form action="" method='POST'>
+            <h1>Zarejestruj się</h1>
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nazwa użytkownika" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password1" placeholder="Hasło" required>
+            <input type="password" name="password2" placeholder="Powtórz hasło" required>
+            <button type='submit' class="btn btn-primary btn-lg btn-block">Register</button>
+            <label for='form-switch'>
+                <div class="d-flex justify-content-center links text-white pt-3 font-weight-bold">
+                    Masz już konto? <a href="{% url 'loginPage' %}" class="ml-2 font-weight-bold">Zaloguj się</a>
+                </div>
+            </label>
+        </form>
+
+    </div>
+</div>
+{% endblock contentLogin %}

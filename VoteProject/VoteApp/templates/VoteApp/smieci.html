@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-primary mb-4">
+  <a class="navbar-brand" href="/">
+    <img src="{% static 'images/logo-aviva.png' %}" width="70" height="30" alt="">
+  </a>
+  <div class="container">
+
+    {% if not user.is_authenticated %}
+    <span><a style="color: white" href="{% url 'loginPage' %}"> zaloguj sie </a></span>
+    {% else %}
+    <span>Hello, {{request.user}}</span>
+    <span><a style="color: white" href="{% url 'logout' %}">Logout</a></span>
+    {% endif %}
+
+
+    <span><a style="color: white" href="{% url 'addPolling' %}">Dodaj ankiete</a></span>
+  </div>
+</nav>

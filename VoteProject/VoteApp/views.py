@@ -20,7 +20,8 @@ from .forms import *
 def home(request):
 
     context = {}
-    return render(request, 'VoteApp/home.html', context)
+    # zmien na home potem !!!!!!!!!!
+    return render(request, 'VoteApp/base.html', context)
 
 
 def registerPage(request):
@@ -57,7 +58,7 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.info(request, 'username or password is incorrect')
+            messages.info(request, 'Login lub hasło jest niepoprawne')
     context = {}
     return render(request, 'VoteApp/login.html', context)
 
@@ -133,8 +134,10 @@ def resultsData(request, pk):
     print(voteData)
     return JsonResponse(voteData, safe=False)
 
+
 def addPolling(request):
-    ChoiceFormSet = inlineformset_factory(Question, Choice, fields=('choice',), extra=3, can_delete = False)
+    ChoiceFormSet = inlineformset_factory(
+        Question, Choice, fields=('choice',), extra=3, can_delete=False)
     formset = ChoiceFormSet()
     form = ChoiceForm()
     if request.method == 'POST':
@@ -144,10 +147,9 @@ def addPolling(request):
         formset = ChoiceFormSet(request.POST)
         if form.is_valid() and formset.is_valid():
             print(request.POST)
-            # form.save() 
+            # form.save()
             # formset.save()
             # return redirect('/')
-    
 
-    context = {'formset':formset, 'form':form}
+    context = {'formset': formset, 'form': form}
     return render(request, 'VoteApp/addPolling.html', context)

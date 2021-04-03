@@ -1,0 +1,45 @@
+{% extends 'VoteApp/base.html' %}
+<h3>login</h3>
+
+{% block contentLogin %}
+<div class="col-md-6 m-auto pt-3">
+  <div class="d-flex justify-content-center text-center">
+    <form action="" method='POST'>
+      {% csrf_token %}
+      <h1>LOGIN</h1>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type='submit' class="btn btn-primary btn-lg btn-block">Login</button>
+
+      <div class='row'>
+        <div class="d-flex justify-content-center links text-white pt-3">
+          Nie masz jeszcze konta? <a href="{% url 'registerPage' %}" class="ml-2">Zarejestruj się</a>
+        </div>
+      </div>
+      {% for message in messages %}
+      <p id="messages">{{message}}</p>
+      {% endfor %}
+
+    </form>
+
+  </div>
+</div>
+{% endblock contentLogin %}
+
+
+
+<!-- <input type='checkbox' id='form-switch'>
+<form id='login-form' action="" method='post'>
+  <input type="text" placeholder="Username" required>
+  <input type="password" placeholder="Password" required>
+  <button type='submit'>Login</button>
+  <label for='form-switch'><span>Register</span></label>
+</form>
+<form id='register-form' action="" method='post'>
+  <input type="text" placeholder="Username" required>
+  <input type="email" placeholder="Email" required>
+  <input type="password" placeholder="Password" required>
+  <input type="password" placeholder="Re Password" required>
+  <button type='submit'>Register</button>
+  <label for='form-switch'>Already Member ? Sign In Now..</label>
+</form> -->
