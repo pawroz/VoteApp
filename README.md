@@ -41,9 +41,15 @@ Project is: _inProgress_
 ## Contact
 Created by Pawel Rozplochowski
 
+
 ## Screenshots
 ![Example screenshot](https://github.com/pawroz/VoteApp/blob/main/VoteProject/static/forReadMe/Screenshot_2021-04-03%20Aviva%20Pzn%20P%C3%B3%C5%82noc.png)
+
+
 ![Example screenshot](https://github.com/pawroz/VoteApp/blob/main/VoteProject/static/forReadMe/Screenshot_2021-04-03%20Aviva%20Pzn%20P%C3%B3%C5%82noc(1).png)
+
+
 ![Example screenshot](https://github.com/pawroz/VoteApp/blob/main/VoteProject/static/forReadMe/Screenshot_2021-04-03%20Aviva%20Pzn%20P%C3%B3%C5%82noc(3).png)
-![Example screenshot](https://github.com/pawroz/VoteApp/blob/main/VoteProject/static/forReadMe/Screenshot_2021-04-03%20Aviva%20Pzn%20P%C3%B3%C5%82noc(4).png
-![Example screenshot](./images/zmiana_dyzuru.png)
+
+
+![Example screenshot](https://github.com/pawroz/VoteApp/blob/main/VoteProject/static/forReadMe/Screenshot_2021-04-03%20Aviva%20Pzn%20P%C3%B3%C5%82noc(4).png)
