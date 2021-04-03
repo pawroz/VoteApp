@@ -13,7 +13,11 @@
 
       <div class='row'>
         <div class="d-flex justify-content-center links text-white pt-3">
-          Nie masz jeszcze konta? <a href="{% url 'registerPage' %}" class="ml-2">Zarejestruj się</a>
+          Nie masz jeszcze konta? <a href="{% url 'registerPage' %}"
+            class="ml-2 text-white font-weight-bold">Zarejestruj się</a>
+        </div>
+        <div class="col-xs-12 center-block text-center pt-3 text-white">
+          <a class='text-white font-weight-bold' href="{% url 'reset_password' %}">Zresetuj hasło</a>
         </div>
       </div>
       {% for message in messages %}
