@@ -32,7 +32,7 @@ You need to have python3 installed. In project folder:
 * Reset password sending for email
 * Voting
 * Creating polls
-* realtime charts creater with Js
+* Realtime charts created with
 
 ## Status
 Project is: _inProgress_
