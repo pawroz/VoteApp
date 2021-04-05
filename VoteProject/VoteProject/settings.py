@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-2d*a@=dgfi#zn63+k-3fj%#k_p38*sa4-fn@ybd)nbg_$ky(t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['voteappaviva.herokuapp.com', '127.0.0.1']
 
