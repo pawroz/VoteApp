@@ -10,3 +10,5 @@
 .ionide
 
 venvDJ/
+
+__pycache__/
