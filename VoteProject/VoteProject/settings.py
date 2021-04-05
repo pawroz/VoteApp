@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-2d*a@=dgfi#zn63+k-3fj%#k_p38*sa4-fn@ybd)nbg_$ky(t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['voteappaviva.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -77,12 +77,8 @@ WSGI_APPLICATION = 'VoteProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'VoteApp',
-        'USER': ':):):)',
-        'PASSWORD':':):):)',
-        'HOST': 'database-1.crcyye2dz3yc.us-west-2.rds.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -136,5 +132,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = '*******'
-EMAIL_HOST_PASSWORD = '******' 
+EMAIL_HOST_USER = 'pomocnikprofesora@gmail.com'
+EMAIL_HOST_PASSWORD = 'Woda@123' 
