@@ -16,7 +16,11 @@
                     Masz już konto? <a href="{% url 'loginPage' %}" class="ml-2 font-weight-bold">Zaloguj się</a>
                 </div>
             </label>
+            {% for message in messages %}
+            <p class='font-weight-bold ' id="messages">{{message}}</p>
+            {% endfor %}
         </form>
+
 
     </div>
 </div>

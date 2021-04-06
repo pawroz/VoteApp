@@ -42,6 +42,9 @@ def registerPage(request):
                 messages.success(
                     request, 'Account was created for ' + username)
                 return redirect('loginPage')
+            else:
+                messages.warning(
+                    request, 'Formularz został źle wypełniony')
 
     context = {'form': form, }
     return render(request, 'VoteApp/register.html', context)
